@@ -159,12 +159,12 @@ export default (fastify, opts, next) => {
       }
     },
     async (req, res) => {
+      const { BINANCE_API_KEY, BINANCE_API_SECRET } = process.env
+
       const ExchangeClass = ccxt.binance
       const platform = new ExchangeClass({
-        apiKey:
-          'BxQ1hfNdSmOhqwDNo9eomtCd08zIuvRiHLooQbC0hCuAlMm3vsIX9RrPVfeOnwlA',
-        secret:
-          '5Hm0XHro7DiriCK7rVHyCeHD9g8DEtg5RxnXJXi1grRS9ETbDhxfTRvfOjUt1zN4'
+        apiKey: BINANCE_API_KEY,
+        secret: BINANCE_API_SECRET
       })
 
       const all = await platform.fetchCurrencies()
