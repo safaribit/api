@@ -993,6 +993,13 @@ cardinal@^2.1.1:
     ansicolors "~0.3.2"
     redeyed "~2.1.0"
 
+ccxt@^4.2.8:
+  version "4.2.8"
+  resolved "https://registry.yarnpkg.com/ccxt/-/ccxt-4.2.8.tgz#85908fca7db0a4fb6424a54aeb053bf92feb6666"
+  integrity sha512-cV4UIKcvnnq1FFmsn4gLuBT6EvAHhha7ED7BDIMbpR9q457ZjeGW9XIE3uLhx2lNGAuleu28eao25OQk7XoPkQ==
+  dependencies:
+    ws "^8.8.1"
+
 chalk@5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.3.0.tgz#67c20a7ebef70e7f3970a01f90fa210cb6860385"
@@ -4288,6 +4295,11 @@ ws@^7, ws@^7.5.5:
   version "7.5.9"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.9.tgz#54fa7db29f4c7cec68b1ddd3a89de099942bb591"
   integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
+
+ws@^8.8.1:
+  version "8.16.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.16.0.tgz#d1cd774f36fbc07165066a60e40323eab6446fd4"
+  integrity sha512-HS0c//TP7Ina87TfiPUz1rQzMhHrl/SG2guqRcTOIUYD2q8uhUdNHZYJUaQ8aTGPzCh+c6oawMKW35nFl1dxyQ==
 
 y18n@^4.0.0:
   version "4.0.3"

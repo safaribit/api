@@ -2,20 +2,21 @@ import envSchema from 'env-schema'
 import CommonESM from '@uscreen.de/common-esm'
 
 const { join } = new CommonESM(import.meta.url)
+const { PORT = 3000 } = process.env
 
 const schema = {
   type: 'object',
   properties: {
-    httpPort: { default: 3000 },
+    httpPort: { default: PORT },
     httpBind: { default: '127.0.0.1' },
-    prefix: { default: '/api' },
+    prefix: { default: '/' },
     logEnabled: { default: true },
     logLevel: { default: 'info' }
   }
 }
 
 const config = envSchema({
-  schema: schema,
+  schema,
   dotenv: true
 })
 

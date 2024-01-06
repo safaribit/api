@@ -23,6 +23,7 @@
   "dependencies": {
     "@uscreen.de/common-esm": "^1.0.0",
     "@uscreen.de/fastify-app": "^1.0.0-0",
+    "ccxt": "^4.2.8",
     "env-schema": "^5.1.1",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.3.0",
