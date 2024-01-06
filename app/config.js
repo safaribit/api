@@ -9,7 +9,7 @@ const schema = {
   properties: {
     httpPort: { default: PORT },
     httpBind: { default: '0.0.0.0' },
-    prefix: { default: '/api' },
+    prefix: { default: '/v1' },
     logEnabled: { default: true },
     logLevel: { default: 'info' }
   }
