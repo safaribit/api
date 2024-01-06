@@ -14,7 +14,6 @@ export default (fastify, opts, next) => {
     },
     async (req, res) => {
       const { currency } = req.query
-      console.log(currency, '<<<<<<<<<<, currency')
 
       const ExchangeClass = ccxt.binance
 
