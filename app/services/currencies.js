@@ -147,36 +147,23 @@ const safaricoin = {
 }
 
 export default (fastify, opts, next) => {
-  fastify.get(
-    '/currencies',
-    {
-      schema: {
-        response: {
-          200: {
-            type: 'array'
-          }
-        }
-      }
-    },
-    async (req, res) => {
-      const { BINANCE_API_KEY, BINANCE_API_SECRET } = process.env
+  fastify.get('/currencies', async () => {
+    const { BINANCE_API_KEY, BINANCE_API_SECRET } = process.env
+    const ExchangeClass = ccxt.binance
+    const platform = new ExchangeClass({
+      apiKey: BINANCE_API_KEY,
+      secret: BINANCE_API_SECRET
+    })
 
-      const ExchangeClass = ccxt.binance
-      const platform = new ExchangeClass({
-        apiKey: BINANCE_API_KEY,
-        secret: BINANCE_API_SECRET
-      })
+    const all = await platform.fetchCurrencies()
 
-      const all = await platform.fetchCurrencies()
+    const _currencies = Object.values(all).filter(
+      (currency) => !currency.info.isLegalMoney
+    )
+    const currencies = [safaricoin, ..._currencies]
 
-      const _currencies = Object.values(all).filter(
-        (currency) => !currency.info.isLegalMoney
-      )
-      const currencies = [safaricoin, ..._currencies]
-
-      return currencies
-    }
-  )
+    return currencies
+  })
 
   next()
 }
