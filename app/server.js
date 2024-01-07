@@ -1,10 +1,17 @@
 import fastify from 'fastify'
+import cors from '@fastify/cors'
 import { options } from '@uscreen.de/fastify-app'
 import config from './config.js'
 import app from './app.js'
 
 const server = fastify(options(config))
 
+await server.register(cors, {
+  origin: [
+    'http://localhost:3000',
+    'https://safaribit.com',
+  ]
+})
 server.register(app, config)
 
 /**
