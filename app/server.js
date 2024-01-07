@@ -7,10 +7,7 @@ import app from './app.js'
 const server = fastify(options(config))
 
 await server.register(cors, {
-  origin: [
-    'http://localhost:3000',
-    'https://safaribit.com',
-  ]
+  origin: ['http://localhost:3000', 'https://safaribit.com']
 })
 server.register(app, config)
 
