@@ -519,6 +519,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@tamtamchik/exchanger@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@tamtamchik/exchanger/-/exchanger-2.1.1.tgz#09ab4d681818dc0a580a29fd5b161e2675f2e98d"
+  integrity sha512-UOrHUC+q8U/Ct2izmpNdagoKE+kRuKTDpts8QZ3LhKOd7v9Z4MT8r5y/1Afna3+FHLCOEBr2lmGqhw1KFDShrg==
+
 "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.6.tgz#7739c232a1fee9b4d3ce8985f314c0c6d33549d7"

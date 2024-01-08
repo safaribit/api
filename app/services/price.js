@@ -1,13 +1,14 @@
 import ccxt from 'ccxt'
+import { getExchangeRate } from '@tamtamchik/exchanger'
 
 export default (fastify, opts, next) => {
   fastify.get('/price', async (req, res) => {
-    const { currency } = req.query
+    const { crypto, fiat } = req.query
 
     const { BINANCE_API_KEY, BINANCE_API_SECRET } = process.env
 
     const code =
-      currency.toUpperCase() === 'SFX' ? 'ETHDOWN' : currency.toUpperCase()
+      crypto.toUpperCase() === 'SFX' ? 'ETHDOWN' : crypto.toUpperCase()
     const ExchangeClass = ccxt.binance
     const platform = new ExchangeClass({
       apiKey: BINANCE_API_KEY,
@@ -17,11 +18,16 @@ export default (fastify, opts, next) => {
     const symbol = `${code.toUpperCase()}USDT`
 
     await platform.loadMarkets()
-    const price = await platform.publicGetAvgPrice({
+    const record = await platform.publicGetAvgPrice({
       symbol
     })
 
-    return price
+    const rate = await getExchangeRate('USD', fiat.toUpperCase(), {
+      cacheDurationMs: 300000
+    })
+
+    record.price = record.price * rate
+    return record
   })
 
   next()

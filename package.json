@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^8.5.0",
+    "@tamtamchik/exchanger": "^2.1.1",
     "@uscreen.de/common-esm": "^1.0.0",
     "@uscreen.de/fastify-app": "^1.0.0-0",
     "ccxt": "^4.2.8",
