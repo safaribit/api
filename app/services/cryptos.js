@@ -1,4 +1,7 @@
 import ccxt from 'ccxt'
+import pkg from 'lodash'
+
+const { uniqBy } = pkg
 
 const safaricoin = {
   id: 'SFX',
@@ -160,8 +163,10 @@ export default (fastify, opts, next) => {
     const cryptos = Object.values(all).filter(
       (currency) => !currency.info.isLegalMoney
     )
+    const btc = cryptos.find((crypto) => crypto.id === 'BTC')
+    const eth = cryptos.find((crypto) => crypto.id === 'ETH')
 
-    return [safaricoin, ...cryptos]
+    return uniqBy([btc, eth, safaricoin, ...cryptos], 'id')
   })
 
   next()
