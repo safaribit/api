@@ -15,19 +15,30 @@ export default (fastify, opts, next) => {
       secret: BINANCE_API_SECRET
     })
 
-    const symbol = `${code.toUpperCase()}USDT`
+    const symbol = `${code.toUpperCase()}${fiat.toUpperCase()}`
 
     await platform.loadMarkets()
-    const record = await platform.publicGetAvgPrice({
-      symbol
-    })
 
-    const rate = await getExchangeRate('USD', fiat.toUpperCase(), {
-      cacheDurationMs: 300000
-    })
+    return platform
+      .publicGetAvgPrice({
+        symbol
+      })
+      .then((record) => record)
+      .catch(async (err) => {
+        if (err.message.includes('Invalid symbol')) {
+          const symbol = `${code.toUpperCase()}USDT`
+          const record = await platform.publicGetAvgPrice({
+            symbol
+          })
+          const rate = await getExchangeRate('USD', fiat.toUpperCase(), {
+            cacheDurationMs: 300000
+          })
 
-    record.price = record.price * rate
-    return record
+          record.price = record.price * rate
+          return record
+        }
+        throw err
+      })
   })
 
   next()
