@@ -149,6 +149,8 @@ const safaricoin = {
   }
 }
 
+const networks = ['BTC', 'ETH']
+
 export default (fastify, opts, next) => {
   fastify.get('/cryptos', async () => {
     const { BINANCE_API_KEY, BINANCE_API_SECRET } = process.env
@@ -159,10 +161,15 @@ export default (fastify, opts, next) => {
     })
 
     const all = await platform.fetchCurrencies()
+    const cryptos = Object.values(all).filter((currency) => {
+      const record = currency.networks.find((network) => network?.isDefault)
+      return (
+        !currency.info.isLegalMoney &&
+        currency.info.trading &&
+        networks.includes(record?.network)
+      )
+    })
 
-    const cryptos = Object.values(all).filter(
-      (currency) => !currency.info.isLegalMoney
-    )
     const btc = cryptos.find((crypto) => crypto.id === 'BTC')
     const eth = cryptos.find((crypto) => crypto.id === 'ETH')
 
